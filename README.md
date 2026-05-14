@@ -17,5 +17,7 @@ Professional n8n multi-agent project workflows built by Saint Sauveur N'Guessan.
 - `saintos-mega-agent-report.md` - SaintOS workflow inventory and safety report
 - `workflows/saintos-mega-agent-v2-bundle.json` - compact visual-compatible SaintOS V2 command center for n8n UI review
 - `saintos-mega-agent-v2-report.md` - SaintOS V2 workflow inventory
+- `workflows/saintos-mega-agent-v3-bundle.json` - stable SaintOS V3 bundle with static workflow IDs and no empty Set nodes
+- `saintos-mega-agent-v3-report.md` - SaintOS V3 workflow inventory
 
 All workflows are exported inactive by default. Configure credentials before enabling production actions.
