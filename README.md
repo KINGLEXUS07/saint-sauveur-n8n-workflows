@@ -15,5 +15,7 @@ Professional n8n multi-agent project workflows built by Saint Sauveur N'Guessan.
 - `top-rated-projects-report.md` - English report with rating signals and project descriptions
 - `workflows/saintos-mega-agent-bundle.json` - SaintOS Mega Agent: CEO AI Agent command center with managers, workers, memory, approval, voice, Gmail, WhatsApp, Telegram, Sheets, Notion and Calendar architecture
 - `saintos-mega-agent-report.md` - SaintOS workflow inventory and safety report
+- `workflows/saintos-mega-agent-v2-bundle.json` - compact visual-compatible SaintOS V2 command center for n8n UI review
+- `saintos-mega-agent-v2-report.md` - SaintOS V2 workflow inventory
 
 All workflows are exported inactive by default. Configure credentials before enabling production actions.
