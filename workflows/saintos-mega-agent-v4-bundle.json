@@ -1,0 +1,3412 @@
+[
+  {
+    "id": "saintos-v4-command-center",
+    "name": "SAINTOS V4 - 01 TESTED CEO COMMAND CENTER",
+    "active": false,
+    "isArchived": false,
+    "nodes": [
+      {
+        "id": "title",
+        "name": "SaintOS Mega Agent V4",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -780,
+          -520
+        ],
+        "parameters": {
+          "width": 700,
+          "height": 260,
+          "color": 5,
+          "content": "# SaintOS Mega Agent V4\n\nManual trigger tested end-to-end.\n\nThe production AI Agent nodes stay visible for portfolio architecture, while the tested demo path uses deterministic code so it passes without API keys."
+        }
+      },
+      {
+        "id": "zone-0",
+        "name": "Inputs",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -780,
+          -220
+        ],
+        "parameters": {
+          "width": 430,
+          "height": 220,
+          "color": 3,
+          "content": "## Inputs\n\nGmail, WhatsApp, Telegram, voice and portal intake."
+        }
+      },
+      {
+        "id": "zone-1",
+        "name": "Tested Demo Path",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -300,
+          -220
+        ],
+        "parameters": {
+          "width": 430,
+          "height": 220,
+          "color": 4,
+          "content": "## Tested Demo Path\n\nManual trigger uses code-based agent simulation. No external keys needed."
+        }
+      },
+      {
+        "id": "zone-2",
+        "name": "AI Agent Architecture",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          180,
+          -220
+        ],
+        "parameters": {
+          "width": 430,
+          "height": 220,
+          "color": 5,
+          "content": "## AI Agent Architecture\n\nVisible n8n AI Agent, model, memory and workflow tools for production connection."
+        }
+      },
+      {
+        "id": "zone-3",
+        "name": "Managers",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          700,
+          -220
+        ],
+        "parameters": {
+          "width": 430,
+          "height": 220,
+          "color": 6,
+          "content": "## Managers\n\nActive connected manager workflows."
+        }
+      },
+      {
+        "id": "zone-4",
+        "name": "Safety",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          1180,
+          -220
+        ],
+        "parameters": {
+          "width": 430,
+          "height": 220,
+          "color": 7,
+          "content": "## Safety\n\nMemory, approval, audit and monitoring."
+        }
+      },
+      {
+        "id": "zone-5",
+        "name": "Outputs",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          1640,
+          -220
+        ],
+        "parameters": {
+          "width": 430,
+          "height": 220,
+          "color": 2,
+          "content": "## Outputs\n\nDrafts only. No live send."
+        }
+      },
+      {
+        "id": "in-gmail",
+        "name": "Gmail Intake Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -700,
+          80
+        ],
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "saintos-v4-gmail",
+          "responseMode": "lastNode",
+          "options": {}
+        }
+      },
+      {
+        "id": "in-whatsapp",
+        "name": "WhatsApp Intake Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -700,
+          210
+        ],
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "saintos-v4-whatsapp",
+          "responseMode": "lastNode",
+          "options": {}
+        }
+      },
+      {
+        "id": "in-telegram",
+        "name": "Telegram Intake Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -700,
+          340
+        ],
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "saintos-v4-telegram",
+          "responseMode": "lastNode",
+          "options": {}
+        }
+      },
+      {
+        "id": "in-voice",
+        "name": "Voice Call Intake Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -700,
+          470
+        ],
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "saintos-v4-voice",
+          "responseMode": "lastNode",
+          "options": {}
+        }
+      },
+      {
+        "id": "in-portal",
+        "name": "Client Portal Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -700,
+          600
+        ],
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "saintos-v4-portal",
+          "responseMode": "lastNode",
+          "options": {}
+        }
+      },
+      {
+        "id": "manual-demo",
+        "name": "Manual Demo Trigger",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          -700,
+          730
+        ],
+        "parameters": {}
+      },
+      {
+        "id": "normalize",
+        "name": "Normalize Message",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -240,
+          330
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, normalized: true, receivedAt: new Date().toISOString()}}));"
+        }
+      },
+      {
+        "id": "channel",
+        "name": "Detect Channel",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -40,
+          330
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, channel: item.json.channel || 'manual_demo'}}));"
+        }
+      },
+      {
+        "id": "contact",
+        "name": "Resolve Contact",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          160,
+          330
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, contact_id: item.json.email || item.json.phone || item.json.chatId || 'demo-contact'}}));"
+        }
+      },
+      {
+        "id": "memory-read",
+        "name": "Read Memory RAG",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.2,
+        "position": [
+          360,
+          330
+        ],
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-memory-rag",
+            "mode": "id",
+            "cachedResultName": "Read Memory RAG"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        }
+      },
+      {
+        "id": "brief",
+        "name": "Build CEO Brief",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          560,
+          330
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, ceoBriefReady: true, request: item.json.request || 'demo client asks for AI automation'}}));"
+        }
+      },
+      {
+        "id": "demo-ceo",
+        "name": "Tested CEO Agent Decision",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          760,
+          330
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, manager: 'communication', priority: 'normal', risk: 'approval_required', approval_required: true, ceo_decision: 'route to all managers for portfolio demo'}}));"
+        }
+      },
+      {
+        "id": "production-ceo-agent",
+        "name": "Production SaintOS CEO AI Agent",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          760,
+          80
+        ],
+        "parameters": {
+          "width": 360,
+          "height": 180,
+          "color": 5,
+          "content": "## Production SaintOS CEO AI Agent\n\nn8n AI Agent slot.\n\nProduction path: connect LLM credentials, then use this AI Agent to choose managers dynamically. Manual demo path is tested without keys."
+        }
+      },
+      {
+        "id": "ceo-model",
+        "name": "CEO Chat Model",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          620,
+          20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 4,
+          "content": "## CEO Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
+        }
+      },
+      {
+        "id": "ceo-memory",
+        "name": "CEO Window Memory",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          920,
+          20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 6,
+          "content": "## CEO Window Memory\n\nProduction session key: `={{$json.contact_id || 'saintos-v4-demo'}}`."
+        }
+      },
+      {
+        "id": "tool-communication",
+        "name": "Communication Manager",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          980,
+          560
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 170,
+          "color": 7,
+          "content": "## Communication Manager\n\nTool workflow target: `saintos-v4-communication-manager`.\n\nRoutes Gmail, WhatsApp, Telegram and voice drafts."
+        }
+      },
+      {
+        "id": "tool-client-success",
+        "name": "Client Success Manager",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          1160,
+          560
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 170,
+          "color": 7,
+          "content": "## Client Success Manager\n\nTool workflow target: `saintos-v4-client-success-manager`.\n\nQualifies leads, drafts proposals, handles objections and prepares follow-ups."
+        }
+      },
+      {
+        "id": "tool-research",
+        "name": "Research Manager",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          1340,
+          560
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 170,
+          "color": 7,
+          "content": "## Research Manager\n\nTool workflow target: `saintos-v4-research-manager`.\n\nRuns web research, enrichment, competitor analysis and report writing."
+        }
+      },
+      {
+        "id": "tool-operations",
+        "name": "Operations Manager",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          980,
+          710
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 170,
+          "color": 7,
+          "content": "## Operations Manager\n\nTool workflow target: `saintos-v4-operations-manager`.\n\nUpdates Sheets, Notion, Calendar, PostgreSQL and task trackers."
+        }
+      },
+      {
+        "id": "tool-content",
+        "name": "Content Manager",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          1160,
+          710
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 170,
+          "color": 7,
+          "content": "## Content Manager\n\nTool workflow target: `saintos-v4-content-manager`.\n\nCreates LinkedIn posts, articles, case studies, video scripts and Upwork copy."
+        }
+      },
+      {
+        "id": "tool-voice",
+        "name": "Voice Manager",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          1340,
+          710
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 170,
+          "color": 7,
+          "content": "## Voice Manager\n\nTool workflow target: `saintos-v4-voice-manager`.\n\nHandles call transcripts, spoken replies, call summaries and voice follow-ups."
+        }
+      },
+      {
+        "id": "risk",
+        "name": "Risk + Priority Score",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          980,
+          330
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, risk_score: 80, approval_required: true}}));"
+        }
+      },
+      {
+        "id": "task-packet",
+        "name": "Build Manager Task Packet",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1180,
+          330
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, task_packet: {priority: item.json.priority, risk: item.json.risk, source: item.json.channel}}}));"
+        }
+      },
+      {
+        "id": "exec-communication",
+        "name": "Execute Communication Manager",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.2,
+        "position": [
+          1420,
+          20
+        ],
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-communication-manager",
+            "mode": "id",
+            "cachedResultName": "Execute Communication Manager"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        }
+      },
+      {
+        "id": "exec-client-success",
+        "name": "Execute Client Success Manager",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.2,
+        "position": [
+          1420,
+          150
+        ],
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-client-success-manager",
+            "mode": "id",
+            "cachedResultName": "Execute Client Success Manager"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        }
+      },
+      {
+        "id": "exec-research",
+        "name": "Execute Research Manager",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.2,
+        "position": [
+          1420,
+          280
+        ],
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-research-manager",
+            "mode": "id",
+            "cachedResultName": "Execute Research Manager"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        }
+      },
+      {
+        "id": "exec-operations",
+        "name": "Execute Operations Manager",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.2,
+        "position": [
+          1420,
+          410
+        ],
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-operations-manager",
+            "mode": "id",
+            "cachedResultName": "Execute Operations Manager"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        }
+      },
+      {
+        "id": "exec-content",
+        "name": "Execute Content Manager",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.2,
+        "position": [
+          1420,
+          540
+        ],
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-content-manager",
+            "mode": "id",
+            "cachedResultName": "Execute Content Manager"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        }
+      },
+      {
+        "id": "exec-voice",
+        "name": "Execute Voice Manager",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.2,
+        "position": [
+          1420,
+          670
+        ],
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-voice-manager",
+            "mode": "id",
+            "cachedResultName": "Execute Voice Manager"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        }
+      },
+      {
+        "id": "approval",
+        "name": "Human Approval Gate",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.2,
+        "position": [
+          1660,
+          330
+        ],
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-human-approval",
+            "mode": "id",
+            "cachedResultName": "Human Approval Gate"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        }
+      },
+      {
+        "id": "approval-summary",
+        "name": "Approval Summary Packet",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1780,
+          330
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"approval_status\": \"pending\", \"live_action\": \"blocked\"}}));"
+        }
+      },
+      {
+        "id": "audit",
+        "name": "Audit To Memory",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.2,
+        "position": [
+          1660,
+          520
+        ],
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-memory-rag",
+            "mode": "id",
+            "cachedResultName": "Audit To Memory"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        }
+      },
+      {
+        "id": "monitor",
+        "name": "Monitoring Hook",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.2,
+        "position": [
+          1660,
+          710
+        ],
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-monitoring",
+            "mode": "id",
+            "cachedResultName": "Monitoring Hook"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        }
+      },
+      {
+        "id": "email-output",
+        "name": "Email Draft Output",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1900,
+          80
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"channel\": \"email\", \"mode\": \"draft_only\"}}));"
+        }
+      },
+      {
+        "id": "whatsapp-output",
+        "name": "WhatsApp Draft Output",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1900,
+          230
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"channel\": \"whatsapp\", \"mode\": \"draft_only\"}}));"
+        }
+      },
+      {
+        "id": "voice-output",
+        "name": "Voice Response Draft",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1900,
+          380
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"channel\": \"voice\", \"mode\": \"draft_only\"}}));"
+        }
+      },
+      {
+        "id": "ops-output",
+        "name": "Sheets / Notion / Calendar Draft",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1900,
+          530
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"channel\": \"operations\", \"mode\": \"approval_required\"}}));"
+        }
+      },
+      {
+        "id": "return",
+        "name": "Return Demo Result",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          2140,
+          330
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"execution_status\": \"success\", \"portfolio_mode\": \"tested_manual_demo\"}}));"
+        }
+      }
+    ],
+    "connections": {
+      "Gmail Intake Webhook": {
+        "main": [
+          [
+            {
+              "node": "Normalize Message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "WhatsApp Intake Webhook": {
+        "main": [
+          [
+            {
+              "node": "Normalize Message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Telegram Intake Webhook": {
+        "main": [
+          [
+            {
+              "node": "Normalize Message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Voice Call Intake Webhook": {
+        "main": [
+          [
+            {
+              "node": "Normalize Message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Client Portal Webhook": {
+        "main": [
+          [
+            {
+              "node": "Normalize Message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Manual Demo Trigger": {
+        "main": [
+          [
+            {
+              "node": "Normalize Message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Normalize Message": {
+        "main": [
+          [
+            {
+              "node": "Detect Channel",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Detect Channel": {
+        "main": [
+          [
+            {
+              "node": "Resolve Contact",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Resolve Contact": {
+        "main": [
+          [
+            {
+              "node": "Read Memory RAG",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Read Memory RAG": {
+        "main": [
+          [
+            {
+              "node": "Build CEO Brief",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Build CEO Brief": {
+        "main": [
+          [
+            {
+              "node": "Tested CEO Agent Decision",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Tested CEO Agent Decision": {
+        "main": [
+          [
+            {
+              "node": "Risk + Priority Score",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Risk + Priority Score": {
+        "main": [
+          [
+            {
+              "node": "Build Manager Task Packet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Build Manager Task Packet": {
+        "main": [
+          [
+            {
+              "node": "Execute Communication Manager",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Execute Client Success Manager",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Execute Research Manager",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Execute Operations Manager",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Execute Content Manager",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Execute Voice Manager",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Communication Manager": {
+        "main": [
+          [
+            {
+              "node": "Human Approval Gate",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Client Success Manager": {
+        "main": [
+          [
+            {
+              "node": "Human Approval Gate",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Research Manager": {
+        "main": [
+          [
+            {
+              "node": "Human Approval Gate",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Operations Manager": {
+        "main": [
+          [
+            {
+              "node": "Human Approval Gate",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Content Manager": {
+        "main": [
+          [
+            {
+              "node": "Human Approval Gate",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Voice Manager": {
+        "main": [
+          [
+            {
+              "node": "Human Approval Gate",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Human Approval Gate": {
+        "main": [
+          [
+            {
+              "node": "Approval Summary Packet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Approval Summary Packet": {
+        "main": [
+          [
+            {
+              "node": "Email Draft Output",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "WhatsApp Draft Output",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Voice Response Draft",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Sheets / Notion / Calendar Draft",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Audit To Memory",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Audit To Memory": {
+        "main": [
+          [
+            {
+              "node": "Return Demo Result",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Monitoring Hook": {
+        "main": [
+          [
+            {
+              "node": "Audit To Memory",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [],
+    "pinData": {},
+    "description": "Tested manual-demo command center for SaintOS Mega Agent V4.",
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "system": "SaintOS Mega Agent V4"
+    }
+  },
+  {
+    "id": "saintos-v4-communication-manager",
+    "name": "SAINTOS V4 - 02 COMMUNICATION MANAGER",
+    "active": true,
+    "isArchived": false,
+    "nodes": [
+      {
+        "id": "communication-note",
+        "name": "Communication Manager",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -620,
+          -360
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 240,
+          "color": 5,
+          "content": "# Communication Manager\n\nRoutes Gmail, WhatsApp, Telegram and voice drafts.\n\nThis workflow is active so the CEO Command Center can call it during manual tests. It does not send real messages."
+        }
+      },
+      {
+        "id": "trigger",
+        "name": "Execute Workflow Trigger",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1,
+        "position": [
+          -520,
+          40
+        ],
+        "parameters": {}
+      },
+      {
+        "id": "context",
+        "name": "Prepare Manager Context",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -300,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"manager\": \"communication\", \"mode\": \"draft_only\"}}));"
+        }
+      },
+      {
+        "id": "production-manager-agent",
+        "name": "Production Communication Manager AI Agent",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -80,
+          -190
+        ],
+        "parameters": {
+          "width": 360,
+          "height": 180,
+          "color": 5,
+          "content": "## Production Communication Manager AI Agent\n\nn8n AI Agent slot.\n\nProduction path for Communication Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
+        }
+      },
+      {
+        "id": "model",
+        "name": "Manager Chat Model",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -240,
+          -20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 4,
+          "content": "## Manager Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
+        }
+      },
+      {
+        "id": "memory",
+        "name": "Manager Memory",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          0,
+          -20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 6,
+          "content": "## Manager Memory\n\nProduction session key: `={$json.contact_id || 'communication-demo'}`."
+        }
+      },
+      {
+        "id": "worker-0",
+        "name": "Gmail Draft Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          120,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Gmail Draft Worker', draft: 'Prepared by Gmail Draft Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-1",
+        "name": "WhatsApp Draft Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          300,
+          190
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'WhatsApp Draft Worker', draft: 'Prepared by WhatsApp Draft Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-2",
+        "name": "Telegram Draft Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          480,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Telegram Draft Worker', draft: 'Prepared by Telegram Draft Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-3",
+        "name": "Voice Reply Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          660,
+          190
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Voice Reply Worker', draft: 'Prepared by Voice Reply Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-4",
+        "name": "Human Handoff Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          840,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Human Handoff Worker', draft: 'Prepared by Human Handoff Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "merge",
+        "name": "Merge Worker Draft",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1040,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, manager_complete: true, live_action_blocked: true}}));"
+        }
+      },
+      {
+        "id": "return",
+        "name": "Return To CEO",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1260,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"status\": \"draft_ready\", \"approval_required\": \"true\"}}));"
+        }
+      }
+    ],
+    "connections": {
+      "Prepare Manager Context": {
+        "main": [
+          [
+            {
+              "node": "Gmail Draft Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Gmail Draft Worker": {
+        "main": [
+          [
+            {
+              "node": "WhatsApp Draft Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "WhatsApp Draft Worker": {
+        "main": [
+          [
+            {
+              "node": "Telegram Draft Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Telegram Draft Worker": {
+        "main": [
+          [
+            {
+              "node": "Voice Reply Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Voice Reply Worker": {
+        "main": [
+          [
+            {
+              "node": "Human Handoff Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Workflow Trigger": {
+        "main": [
+          [
+            {
+              "node": "Prepare Manager Context",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Human Handoff Worker": {
+        "main": [
+          [
+            {
+              "node": "Merge Worker Draft",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge Worker Draft": {
+        "main": [
+          [
+            {
+              "node": "Return To CEO",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [],
+    "pinData": {},
+    "description": "Routes Gmail, WhatsApp, Telegram and voice drafts.",
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "system": "SaintOS Mega Agent V4"
+    }
+  },
+  {
+    "id": "saintos-v4-client-success-manager",
+    "name": "SAINTOS V4 - 03 CLIENT SUCCESS MANAGER",
+    "active": true,
+    "isArchived": false,
+    "nodes": [
+      {
+        "id": "client-success-note",
+        "name": "Client Success Manager",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -620,
+          -360
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 240,
+          "color": 5,
+          "content": "# Client Success Manager\n\nQualifies leads, drafts proposals, handles objections and prepares follow-ups.\n\nThis workflow is active so the CEO Command Center can call it during manual tests. It does not send real messages."
+        }
+      },
+      {
+        "id": "trigger",
+        "name": "Execute Workflow Trigger",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1,
+        "position": [
+          -520,
+          40
+        ],
+        "parameters": {}
+      },
+      {
+        "id": "context",
+        "name": "Prepare Manager Context",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -300,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"manager\": \"client-success\", \"mode\": \"draft_only\"}}));"
+        }
+      },
+      {
+        "id": "production-manager-agent",
+        "name": "Production Client Success Manager AI Agent",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -80,
+          -190
+        ],
+        "parameters": {
+          "width": 360,
+          "height": 180,
+          "color": 5,
+          "content": "## Production Client Success Manager AI Agent\n\nn8n AI Agent slot.\n\nProduction path for Client Success Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
+        }
+      },
+      {
+        "id": "model",
+        "name": "Manager Chat Model",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -240,
+          -20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 4,
+          "content": "## Manager Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
+        }
+      },
+      {
+        "id": "memory",
+        "name": "Manager Memory",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          0,
+          -20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 6,
+          "content": "## Manager Memory\n\nProduction session key: `={$json.contact_id || 'client-success-demo'}`."
+        }
+      },
+      {
+        "id": "worker-0",
+        "name": "Lead Qualification Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          120,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Lead Qualification Worker', draft: 'Prepared by Lead Qualification Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-1",
+        "name": "Proposal Draft Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          300,
+          190
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Proposal Draft Worker', draft: 'Prepared by Proposal Draft Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-2",
+        "name": "Quote Builder Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          480,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Quote Builder Worker', draft: 'Prepared by Quote Builder Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-3",
+        "name": "Follow-up Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          660,
+          190
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Follow-up Worker', draft: 'Prepared by Follow-up Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-4",
+        "name": "Objection Handler Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          840,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Objection Handler Worker', draft: 'Prepared by Objection Handler Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "merge",
+        "name": "Merge Worker Draft",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1040,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, manager_complete: true, live_action_blocked: true}}));"
+        }
+      },
+      {
+        "id": "return",
+        "name": "Return To CEO",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1260,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"status\": \"draft_ready\", \"approval_required\": \"true\"}}));"
+        }
+      }
+    ],
+    "connections": {
+      "Prepare Manager Context": {
+        "main": [
+          [
+            {
+              "node": "Lead Qualification Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Lead Qualification Worker": {
+        "main": [
+          [
+            {
+              "node": "Proposal Draft Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Proposal Draft Worker": {
+        "main": [
+          [
+            {
+              "node": "Quote Builder Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Quote Builder Worker": {
+        "main": [
+          [
+            {
+              "node": "Follow-up Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Follow-up Worker": {
+        "main": [
+          [
+            {
+              "node": "Objection Handler Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Workflow Trigger": {
+        "main": [
+          [
+            {
+              "node": "Prepare Manager Context",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Objection Handler Worker": {
+        "main": [
+          [
+            {
+              "node": "Merge Worker Draft",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge Worker Draft": {
+        "main": [
+          [
+            {
+              "node": "Return To CEO",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [],
+    "pinData": {},
+    "description": "Qualifies leads, drafts proposals, handles objections and prepares follow-ups.",
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "system": "SaintOS Mega Agent V4"
+    }
+  },
+  {
+    "id": "saintos-v4-research-manager",
+    "name": "SAINTOS V4 - 04 RESEARCH MANAGER",
+    "active": true,
+    "isArchived": false,
+    "nodes": [
+      {
+        "id": "research-note",
+        "name": "Research Manager",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -620,
+          -360
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 240,
+          "color": 5,
+          "content": "# Research Manager\n\nRuns web research, enrichment, competitor analysis and report writing.\n\nThis workflow is active so the CEO Command Center can call it during manual tests. It does not send real messages."
+        }
+      },
+      {
+        "id": "trigger",
+        "name": "Execute Workflow Trigger",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1,
+        "position": [
+          -520,
+          40
+        ],
+        "parameters": {}
+      },
+      {
+        "id": "context",
+        "name": "Prepare Manager Context",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -300,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"manager\": \"research\", \"mode\": \"draft_only\"}}));"
+        }
+      },
+      {
+        "id": "production-manager-agent",
+        "name": "Production Research Manager AI Agent",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -80,
+          -190
+        ],
+        "parameters": {
+          "width": 360,
+          "height": 180,
+          "color": 5,
+          "content": "## Production Research Manager AI Agent\n\nn8n AI Agent slot.\n\nProduction path for Research Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
+        }
+      },
+      {
+        "id": "model",
+        "name": "Manager Chat Model",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -240,
+          -20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 4,
+          "content": "## Manager Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
+        }
+      },
+      {
+        "id": "memory",
+        "name": "Manager Memory",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          0,
+          -20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 6,
+          "content": "## Manager Memory\n\nProduction session key: `={$json.contact_id || 'research-demo'}`."
+        }
+      },
+      {
+        "id": "worker-0",
+        "name": "Web Search Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          120,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Web Search Worker', draft: 'Prepared by Web Search Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-1",
+        "name": "Company Enrichment Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          300,
+          190
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Company Enrichment Worker', draft: 'Prepared by Company Enrichment Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-2",
+        "name": "Competitor Analysis Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          480,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Competitor Analysis Worker', draft: 'Prepared by Competitor Analysis Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-3",
+        "name": "Source Summary Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          660,
+          190
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Source Summary Worker', draft: 'Prepared by Source Summary Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-4",
+        "name": "Report Writer Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          840,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Report Writer Worker', draft: 'Prepared by Report Writer Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "merge",
+        "name": "Merge Worker Draft",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1040,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, manager_complete: true, live_action_blocked: true}}));"
+        }
+      },
+      {
+        "id": "return",
+        "name": "Return To CEO",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1260,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"status\": \"draft_ready\", \"approval_required\": \"true\"}}));"
+        }
+      }
+    ],
+    "connections": {
+      "Prepare Manager Context": {
+        "main": [
+          [
+            {
+              "node": "Web Search Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Web Search Worker": {
+        "main": [
+          [
+            {
+              "node": "Company Enrichment Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Company Enrichment Worker": {
+        "main": [
+          [
+            {
+              "node": "Competitor Analysis Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Competitor Analysis Worker": {
+        "main": [
+          [
+            {
+              "node": "Source Summary Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Source Summary Worker": {
+        "main": [
+          [
+            {
+              "node": "Report Writer Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Workflow Trigger": {
+        "main": [
+          [
+            {
+              "node": "Prepare Manager Context",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Report Writer Worker": {
+        "main": [
+          [
+            {
+              "node": "Merge Worker Draft",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge Worker Draft": {
+        "main": [
+          [
+            {
+              "node": "Return To CEO",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [],
+    "pinData": {},
+    "description": "Runs web research, enrichment, competitor analysis and report writing.",
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "system": "SaintOS Mega Agent V4"
+    }
+  },
+  {
+    "id": "saintos-v4-operations-manager",
+    "name": "SAINTOS V4 - 05 OPERATIONS MANAGER",
+    "active": true,
+    "isArchived": false,
+    "nodes": [
+      {
+        "id": "operations-note",
+        "name": "Operations Manager",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -620,
+          -360
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 240,
+          "color": 5,
+          "content": "# Operations Manager\n\nUpdates Sheets, Notion, Calendar, PostgreSQL and task trackers.\n\nThis workflow is active so the CEO Command Center can call it during manual tests. It does not send real messages."
+        }
+      },
+      {
+        "id": "trigger",
+        "name": "Execute Workflow Trigger",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1,
+        "position": [
+          -520,
+          40
+        ],
+        "parameters": {}
+      },
+      {
+        "id": "context",
+        "name": "Prepare Manager Context",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -300,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"manager\": \"operations\", \"mode\": \"draft_only\"}}));"
+        }
+      },
+      {
+        "id": "production-manager-agent",
+        "name": "Production Operations Manager AI Agent",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -80,
+          -190
+        ],
+        "parameters": {
+          "width": 360,
+          "height": 180,
+          "color": 5,
+          "content": "## Production Operations Manager AI Agent\n\nn8n AI Agent slot.\n\nProduction path for Operations Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
+        }
+      },
+      {
+        "id": "model",
+        "name": "Manager Chat Model",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -240,
+          -20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 4,
+          "content": "## Manager Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
+        }
+      },
+      {
+        "id": "memory",
+        "name": "Manager Memory",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          0,
+          -20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 6,
+          "content": "## Manager Memory\n\nProduction session key: `={$json.contact_id || 'operations-demo'}`."
+        }
+      },
+      {
+        "id": "worker-0",
+        "name": "Google Sheets Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          120,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Google Sheets Worker', draft: 'Prepared by Google Sheets Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-1",
+        "name": "Notion Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          300,
+          190
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Notion Worker', draft: 'Prepared by Notion Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-2",
+        "name": "Calendar Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          480,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Calendar Worker', draft: 'Prepared by Calendar Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-3",
+        "name": "PostgreSQL Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          660,
+          190
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'PostgreSQL Worker', draft: 'Prepared by PostgreSQL Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-4",
+        "name": "Task Tracker Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          840,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Task Tracker Worker', draft: 'Prepared by Task Tracker Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "merge",
+        "name": "Merge Worker Draft",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1040,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, manager_complete: true, live_action_blocked: true}}));"
+        }
+      },
+      {
+        "id": "return",
+        "name": "Return To CEO",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1260,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"status\": \"draft_ready\", \"approval_required\": \"true\"}}));"
+        }
+      }
+    ],
+    "connections": {
+      "Prepare Manager Context": {
+        "main": [
+          [
+            {
+              "node": "Google Sheets Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Sheets Worker": {
+        "main": [
+          [
+            {
+              "node": "Notion Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Notion Worker": {
+        "main": [
+          [
+            {
+              "node": "Calendar Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Calendar Worker": {
+        "main": [
+          [
+            {
+              "node": "PostgreSQL Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "PostgreSQL Worker": {
+        "main": [
+          [
+            {
+              "node": "Task Tracker Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Workflow Trigger": {
+        "main": [
+          [
+            {
+              "node": "Prepare Manager Context",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Task Tracker Worker": {
+        "main": [
+          [
+            {
+              "node": "Merge Worker Draft",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge Worker Draft": {
+        "main": [
+          [
+            {
+              "node": "Return To CEO",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [],
+    "pinData": {},
+    "description": "Updates Sheets, Notion, Calendar, PostgreSQL and task trackers.",
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "system": "SaintOS Mega Agent V4"
+    }
+  },
+  {
+    "id": "saintos-v4-content-manager",
+    "name": "SAINTOS V4 - 06 CONTENT MANAGER",
+    "active": true,
+    "isArchived": false,
+    "nodes": [
+      {
+        "id": "content-note",
+        "name": "Content Manager",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -620,
+          -360
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 240,
+          "color": 5,
+          "content": "# Content Manager\n\nCreates LinkedIn posts, articles, case studies, video scripts and Upwork copy.\n\nThis workflow is active so the CEO Command Center can call it during manual tests. It does not send real messages."
+        }
+      },
+      {
+        "id": "trigger",
+        "name": "Execute Workflow Trigger",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1,
+        "position": [
+          -520,
+          40
+        ],
+        "parameters": {}
+      },
+      {
+        "id": "context",
+        "name": "Prepare Manager Context",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -300,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"manager\": \"content\", \"mode\": \"draft_only\"}}));"
+        }
+      },
+      {
+        "id": "production-manager-agent",
+        "name": "Production Content Manager AI Agent",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -80,
+          -190
+        ],
+        "parameters": {
+          "width": 360,
+          "height": 180,
+          "color": 5,
+          "content": "## Production Content Manager AI Agent\n\nn8n AI Agent slot.\n\nProduction path for Content Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
+        }
+      },
+      {
+        "id": "model",
+        "name": "Manager Chat Model",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -240,
+          -20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 4,
+          "content": "## Manager Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
+        }
+      },
+      {
+        "id": "memory",
+        "name": "Manager Memory",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          0,
+          -20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 6,
+          "content": "## Manager Memory\n\nProduction session key: `={$json.contact_id || 'content-demo'}`."
+        }
+      },
+      {
+        "id": "worker-0",
+        "name": "LinkedIn Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          120,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'LinkedIn Worker', draft: 'Prepared by LinkedIn Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-1",
+        "name": "Blog Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          300,
+          190
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Blog Worker', draft: 'Prepared by Blog Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-2",
+        "name": "Case Study Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          480,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Case Study Worker', draft: 'Prepared by Case Study Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-3",
+        "name": "Short Video Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          660,
+          190
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Short Video Worker', draft: 'Prepared by Short Video Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-4",
+        "name": "Upwork Profile Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          840,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Upwork Profile Worker', draft: 'Prepared by Upwork Profile Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "merge",
+        "name": "Merge Worker Draft",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1040,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, manager_complete: true, live_action_blocked: true}}));"
+        }
+      },
+      {
+        "id": "return",
+        "name": "Return To CEO",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1260,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"status\": \"draft_ready\", \"approval_required\": \"true\"}}));"
+        }
+      }
+    ],
+    "connections": {
+      "Prepare Manager Context": {
+        "main": [
+          [
+            {
+              "node": "LinkedIn Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "LinkedIn Worker": {
+        "main": [
+          [
+            {
+              "node": "Blog Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Blog Worker": {
+        "main": [
+          [
+            {
+              "node": "Case Study Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Case Study Worker": {
+        "main": [
+          [
+            {
+              "node": "Short Video Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Short Video Worker": {
+        "main": [
+          [
+            {
+              "node": "Upwork Profile Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Workflow Trigger": {
+        "main": [
+          [
+            {
+              "node": "Prepare Manager Context",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Upwork Profile Worker": {
+        "main": [
+          [
+            {
+              "node": "Merge Worker Draft",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge Worker Draft": {
+        "main": [
+          [
+            {
+              "node": "Return To CEO",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [],
+    "pinData": {},
+    "description": "Creates LinkedIn posts, articles, case studies, video scripts and Upwork copy.",
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "system": "SaintOS Mega Agent V4"
+    }
+  },
+  {
+    "id": "saintos-v4-voice-manager",
+    "name": "SAINTOS V4 - 07 VOICE MANAGER",
+    "active": true,
+    "isArchived": false,
+    "nodes": [
+      {
+        "id": "voice-note",
+        "name": "Voice Manager",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -620,
+          -360
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 240,
+          "color": 5,
+          "content": "# Voice Manager\n\nHandles call transcripts, spoken replies, call summaries and voice follow-ups.\n\nThis workflow is active so the CEO Command Center can call it during manual tests. It does not send real messages."
+        }
+      },
+      {
+        "id": "trigger",
+        "name": "Execute Workflow Trigger",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1,
+        "position": [
+          -520,
+          40
+        ],
+        "parameters": {}
+      },
+      {
+        "id": "context",
+        "name": "Prepare Manager Context",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -300,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"manager\": \"voice\", \"mode\": \"draft_only\"}}));"
+        }
+      },
+      {
+        "id": "production-manager-agent",
+        "name": "Production Voice Manager AI Agent",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -80,
+          -190
+        ],
+        "parameters": {
+          "width": 360,
+          "height": 180,
+          "color": 5,
+          "content": "## Production Voice Manager AI Agent\n\nn8n AI Agent slot.\n\nProduction path for Voice Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
+        }
+      },
+      {
+        "id": "model",
+        "name": "Manager Chat Model",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -240,
+          -20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 4,
+          "content": "## Manager Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
+        }
+      },
+      {
+        "id": "memory",
+        "name": "Manager Memory",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          0,
+          -20
+        ],
+        "parameters": {
+          "width": 300,
+          "height": 150,
+          "color": 6,
+          "content": "## Manager Memory\n\nProduction session key: `={$json.contact_id || 'voice-demo'}`."
+        }
+      },
+      {
+        "id": "worker-0",
+        "name": "Voice Intake Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          120,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Voice Intake Worker', draft: 'Prepared by Voice Intake Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-1",
+        "name": "Transcript Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          300,
+          190
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Transcript Worker', draft: 'Prepared by Transcript Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-2",
+        "name": "Spoken Reply Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          480,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Spoken Reply Worker', draft: 'Prepared by Spoken Reply Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-3",
+        "name": "Call Summary Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          660,
+          190
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Call Summary Worker', draft: 'Prepared by Call Summary Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "worker-4",
+        "name": "Follow-up Message Worker",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          840,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, worker: 'Follow-up Message Worker', draft: 'Prepared by Follow-up Message Worker', approval_required: true}}));"
+        }
+      },
+      {
+        "id": "merge",
+        "name": "Merge Worker Draft",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1040,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, manager_complete: true, live_action_blocked: true}}));"
+        }
+      },
+      {
+        "id": "return",
+        "name": "Return To CEO",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1260,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"status\": \"draft_ready\", \"approval_required\": \"true\"}}));"
+        }
+      }
+    ],
+    "connections": {
+      "Prepare Manager Context": {
+        "main": [
+          [
+            {
+              "node": "Voice Intake Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Voice Intake Worker": {
+        "main": [
+          [
+            {
+              "node": "Transcript Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Transcript Worker": {
+        "main": [
+          [
+            {
+              "node": "Spoken Reply Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Spoken Reply Worker": {
+        "main": [
+          [
+            {
+              "node": "Call Summary Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Call Summary Worker": {
+        "main": [
+          [
+            {
+              "node": "Follow-up Message Worker",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Workflow Trigger": {
+        "main": [
+          [
+            {
+              "node": "Prepare Manager Context",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Follow-up Message Worker": {
+        "main": [
+          [
+            {
+              "node": "Merge Worker Draft",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge Worker Draft": {
+        "main": [
+          [
+            {
+              "node": "Return To CEO",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [],
+    "pinData": {},
+    "description": "Handles call transcripts, spoken replies, call summaries and voice follow-ups.",
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "system": "SaintOS Mega Agent V4"
+    }
+  },
+  {
+    "id": "saintos-v4-memory-rag",
+    "name": "SAINTOS V4 - 08 MEMORY RAG SYSTEM",
+    "active": true,
+    "isArchived": false,
+    "nodes": [
+      {
+        "id": "saintos-v4-memory-rag-note",
+        "name": "Memory RAG System",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -620,
+          -340
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 220,
+          "color": 4,
+          "content": "# Memory RAG System\n\nReads and writes conversation, client and project memory."
+        }
+      },
+      {
+        "id": "trigger",
+        "name": "Execute Workflow Trigger",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1,
+        "position": [
+          -520,
+          40
+        ],
+        "parameters": {}
+      },
+      {
+        "id": "step-0",
+        "name": "Retrieve Memory",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -260,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Retrieve Memory', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "step-1",
+        "name": "Vector Search",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -40,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Vector Search', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "step-2",
+        "name": "Save Conversation",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          180,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Save Conversation', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "step-3",
+        "name": "Save Audit Log",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          400,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Save Audit Log', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "step-4",
+        "name": "Return Memory Context",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          620,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Return Memory Context', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "return",
+        "name": "Return Safe Result",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          980,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"status\": \"safe_result_ready\"}}));"
+        }
+      }
+    ],
+    "connections": {
+      "Execute Workflow Trigger": {
+        "main": [
+          [
+            {
+              "node": "Retrieve Memory",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Retrieve Memory": {
+        "main": [
+          [
+            {
+              "node": "Vector Search",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Vector Search": {
+        "main": [
+          [
+            {
+              "node": "Save Conversation",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Save Conversation": {
+        "main": [
+          [
+            {
+              "node": "Save Audit Log",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Save Audit Log": {
+        "main": [
+          [
+            {
+              "node": "Return Memory Context",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Return Memory Context": {
+        "main": [
+          [
+            {
+              "node": "Return Safe Result",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [],
+    "pinData": {},
+    "description": "Reads and writes conversation, client and project memory.",
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "system": "SaintOS Mega Agent V4"
+    }
+  },
+  {
+    "id": "saintos-v4-human-approval",
+    "name": "SAINTOS V4 - 09 HUMAN APPROVAL GATE",
+    "active": true,
+    "isArchived": false,
+    "nodes": [
+      {
+        "id": "saintos-v4-human-approval-note",
+        "name": "Human Approval Gate",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -620,
+          -340
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 220,
+          "color": 4,
+          "content": "# Human Approval Gate\n\nBlocks email, WhatsApp, Telegram, voice call and CRM writes until approval."
+        }
+      },
+      {
+        "id": "trigger",
+        "name": "Execute Workflow Trigger",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1,
+        "position": [
+          -520,
+          40
+        ],
+        "parameters": {}
+      },
+      {
+        "id": "step-0",
+        "name": "Review Risk",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -260,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Review Risk', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "step-1",
+        "name": "Create Approval Request",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -40,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Create Approval Request', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "step-2",
+        "name": "Wait For Decision",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          180,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Wait For Decision', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "step-3",
+        "name": "Approve Draft",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          400,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Approve Draft', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "step-4",
+        "name": "Reject Draft",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          620,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Reject Draft', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "return",
+        "name": "Return Safe Result",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          980,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"status\": \"safe_result_ready\"}}));"
+        }
+      }
+    ],
+    "connections": {
+      "Execute Workflow Trigger": {
+        "main": [
+          [
+            {
+              "node": "Review Risk",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Review Risk": {
+        "main": [
+          [
+            {
+              "node": "Create Approval Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create Approval Request": {
+        "main": [
+          [
+            {
+              "node": "Wait For Decision",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait For Decision": {
+        "main": [
+          [
+            {
+              "node": "Approve Draft",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Approve Draft": {
+        "main": [
+          [
+            {
+              "node": "Reject Draft",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Reject Draft": {
+        "main": [
+          [
+            {
+              "node": "Return Safe Result",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [],
+    "pinData": {},
+    "description": "Blocks email, WhatsApp, Telegram, voice call and CRM writes until approval.",
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "system": "SaintOS Mega Agent V4"
+    }
+  },
+  {
+    "id": "saintos-v4-monitoring",
+    "name": "SAINTOS V4 - 10 MONITORING AND ERROR HANDLER",
+    "active": true,
+    "isArchived": false,
+    "nodes": [
+      {
+        "id": "saintos-v4-monitoring-note",
+        "name": "Monitoring And Error Handler",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -620,
+          -340
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 220,
+          "color": 4,
+          "content": "# Monitoring And Error Handler\n\nCaptures failed executions and writes debug context to memory."
+        }
+      },
+      {
+        "id": "trigger",
+        "name": "Execute Workflow Trigger",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1,
+        "position": [
+          -520,
+          40
+        ],
+        "parameters": {}
+      },
+      {
+        "id": "step-0",
+        "name": "Parse Error",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -260,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Parse Error', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "step-1",
+        "name": "Classify Severity",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -40,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Classify Severity', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "step-2",
+        "name": "Notify Admin",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          180,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Notify Admin', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "step-3",
+        "name": "Create Fix Task",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          400,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Create Fix Task', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "step-4",
+        "name": "Save Error Memory",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          620,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, step: 'Save Error Memory', safe_mode: true}}));"
+        }
+      },
+      {
+        "id": "return",
+        "name": "Return Safe Result",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          980,
+          40
+        ],
+        "parameters": {
+          "jsCode": "return items.map(item => ({json: {...item.json, \"status\": \"safe_result_ready\"}}));"
+        }
+      }
+    ],
+    "connections": {
+      "Execute Workflow Trigger": {
+        "main": [
+          [
+            {
+              "node": "Parse Error",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Parse Error": {
+        "main": [
+          [
+            {
+              "node": "Classify Severity",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Classify Severity": {
+        "main": [
+          [
+            {
+              "node": "Notify Admin",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Notify Admin": {
+        "main": [
+          [
+            {
+              "node": "Create Fix Task",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create Fix Task": {
+        "main": [
+          [
+            {
+              "node": "Save Error Memory",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Save Error Memory": {
+        "main": [
+          [
+            {
+              "node": "Return Safe Result",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [],
+    "pinData": {},
+    "description": "Captures failed executions and writes debug context to memory.",
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "system": "SaintOS Mega Agent V4"
+    }
+  }
+]

@@ -19,5 +19,8 @@ Professional n8n multi-agent project workflows built by Saint Sauveur N'Guessan.
 - `saintos-mega-agent-v2-report.md` - SaintOS V2 workflow inventory
 - `workflows/saintos-mega-agent-v3-bundle.json` - stable SaintOS V3 bundle with static workflow IDs and no empty Set nodes
 - `saintos-mega-agent-v3-report.md` - SaintOS V3 workflow inventory
+- `workflows/saintos-mega-agent-v4-bundle.json` - tested SaintOS V4 CEO command center with 9 callable sub-workflows and manual-trigger-safe execution
+- `saintos-mega-agent-v4-report.md` - SaintOS V4 workflow inventory and test note
+- `run-saintos-v4-tests.sh` - server-side n8n CLI test script used to verify all 10 SaintOS V4 workflows
 
-All workflows are exported inactive by default. Configure credentials before enabling production actions.
+Production actions are draft-only by default. Configure credentials before enabling live email, WhatsApp, Telegram, voice, CRM or calendar actions.
