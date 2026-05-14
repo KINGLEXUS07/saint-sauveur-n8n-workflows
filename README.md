@@ -11,5 +11,7 @@ Professional n8n multi-agent project workflows built by Saint Sauveur N'Guessan.
 - `workflows/saint-sauveur-bonus-projects.json` - additional project workflows
 - `workflows/saint-sauveur-morning-advanced-projects.json` - advanced multi-workflow bundle with voice AI call agent, supervisor agents, router agents, hub orchestration, travel planning, WhatsApp and content systems
 - `morning-advanced-projects-report.md` - English project descriptions and workflow counts
+- `workflows/saint-sauveur-top-rated-projects.json` - curated top-rated bundle selected by GitHub stars, workflow complexity, connected architecture and visual portfolio value
+- `top-rated-projects-report.md` - English report with rating signals and project descriptions
 
 All workflows are exported inactive by default. Configure credentials before enabling production actions.
