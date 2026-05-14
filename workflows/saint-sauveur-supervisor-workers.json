@@ -1,0 +1,1367 @@
+[
+  {
+    "name": "SAINT SAUVEUR PROJECT #1 - AVA Supervisor CEO",
+    "nodes": [
+      {
+        "id": "direct-supervisor-supervisor-ceo-source-note",
+        "name": "Project Notes",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -760,
+          -360
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 320,
+          "content": "# Project by Saint Sauveur N'Guessan\n\nProfessional n8n multi-agent project built with AVA CEO orchestration and specialized worker agents.\n\nProject areas: AI agents, n8n workflows, Make.com automation, Python, AWS, WhatsApp Business API, PostgreSQL and business process automation.\n\nSafety: workflows are inactive by default. Configure credentials and require human approval before any email, WhatsApp, calendar, Slack or CRM write action."
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -20,
+          -160
+        ],
+        "id": "6c1f188a-3dba-4992-812d-994dbbf3ccbb",
+        "name": "When chat message received",
+        "webhookId": "a6d0e9e5-de83-4344-abe8-d1584813a7d4"
+      },
+      {
+        "parameters": {
+          "options": {
+            "systemMessage": "# ROLE\nYou are AVA, the CEO Supervisor Agent for Saint Sauveur N.'s Upwork portfolio.\nYour job is to orchestrate specialist workers: Commercial Email, Calendar Booking, CRM Contact, Content Creator and Knowledge Base.\nNever claim a message was sent unless a tool result proves it. Prefer draft/review outputs for portfolio demo.\n\n# BUSINESS CONTEXT\nSaint Sauveur N. is an AI Automation Engineer based in Abidjan.\nProof: 11 n8n workflows in production, 6 specialized agents, 361+ messages auto-processed, response time reduced from hours to 12 seconds.\nStack: n8n, Make.com, Python/Playwright, PostgreSQL, Docker, AWS, WhatsApp Business API, OpenAI/Claude API, AWS Bedrock.\n\n# SAFETY\nNo automatic DM, WhatsApp, email or calendar action without explicit human approval.\nFor Upwork leads, qualify need, budget, timeline and tools, then produce a concise proposal-ready response."
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
+        "position": [
+          200,
+          -160
+        ],
+        "id": "c066a050-d776-432c-b93d-05e6edb14d1d",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "contextWindowLength": 20
+        },
+        "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+        "typeVersion": 1.3,
+        "position": [
+          -140,
+          80
+        ],
+        "id": "36e98b41-87f3-4180-abf9-5330e258d460",
+        "name": "Window Buffer Memory"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+        "typeVersion": 1,
+        "position": [
+          40,
+          180
+        ],
+        "id": "5d551f3b-6f78-4dbd-8cc3-bfc84ea8cc76",
+        "name": "GoogleSearch",
+        "credentials": {
+          "serpApi": {
+            "id": "6VIfktxOdnWwrdVl",
+            "name": "SerpAPI account"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+        "typeVersion": 1,
+        "position": [
+          140,
+          180
+        ],
+        "id": "14e2422b-3c82-48c1-9ffb-38945ca002a1",
+        "name": "Calculator"
+      },
+      {
+        "parameters": {
+          "name": "EmailAgent",
+          "description": "Use this tool for any email related activities.",
+          "workflowId": {
+            "__rl": true,
+            "value": "direct-supervisor-email-agent",
+            "mode": "list",
+            "cachedResultName": "SAINT SAUVEUR PROJECT #1 - AVA Commercial Email Worker"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2,
+        "position": [
+          240,
+          180
+        ],
+        "id": "eb410a22-8bc8-4622-8cc3-8704cc7335cd",
+        "name": "Email"
+      },
+      {
+        "parameters": {
+          "name": "ContactsAgent",
+          "description": "Use this agent for all contacts related actions.",
+          "workflowId": {
+            "__rl": true,
+            "value": "direct-supervisor-contact-agent",
+            "mode": "list",
+            "cachedResultName": "SAINT SAUVEUR PROJECT #1 - AVA CRM Contact Worker"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2,
+        "position": [
+          340,
+          180
+        ],
+        "id": "f2d10ebe-6908-4333-ac70-7641b0ecaf0b",
+        "name": "Contacts"
+      },
+      {
+        "parameters": {
+          "name": "CalendarAgent",
+          "description": "Use this tool for all calendar related actions.",
+          "workflowId": {
+            "__rl": true,
+            "value": "direct-supervisor-calendar-agent",
+            "mode": "list",
+            "cachedResultName": "SAINT SAUVEUR PROJECT #1 - AVA Calendar Booking Worker"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2,
+        "position": [
+          440,
+          180
+        ],
+        "id": "9795fe7c-df31-4e9f-8738-c2b04487622a",
+        "name": "Calendar"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          660,
+          300
+        ],
+        "id": "4675694e-208c-46a6-86a1-2ad8acbeb91f",
+        "name": "Embeddings OpenAI",
+        "credentials": {
+          "openAiApi": {
+            "id": "nrDrI8MUFREwh9aM",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "mode": "retrieve-as-tool",
+          "toolName": "KnowledgeBase",
+          "toolDescription": "Use this tool for any queries related to our custom knowledge base.",
+          "pineconeIndex": {
+            "__rl": true,
+            "value": "n8n-tutorial",
+            "mode": "list",
+            "cachedResultName": "n8n-tutorial"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+        "typeVersion": 1,
+        "position": [
+          640,
+          180
+        ],
+        "id": "ad71d3e5-18e6-4c6d-a581-a09f9af8ec3f",
+        "name": "KnowledgeBase",
+        "credentials": {
+          "pineconeApi": {
+            "id": "k4NoMJeIorHc6pt4",
+            "name": "PineconeApi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-4o",
+            "mode": "list",
+            "cachedResultName": "gpt-4o"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          -280,
+          80
+        ],
+        "id": "18f3a4db-7c3a-442a-8335-80bef562cfd3",
+        "name": "OpenAI",
+        "credentials": {
+          "openAiApi": {
+            "id": "nrDrI8MUFREwh9aM",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "name": "ContentCreator",
+          "description": "Use this tool for any actions that require creative writing.",
+          "workflowId": {
+            "__rl": true,
+            "value": "direct-supervisor-content-creator",
+            "mode": "list",
+            "cachedResultName": "SAINT SAUVEUR PROJECT #1 - AVA Content Creator Worker"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2,
+        "position": [
+          540,
+          180
+        ],
+        "id": "48334d96-e9d9-4a57-8717-f14143403746",
+        "name": "Writer"
+      }
+    ],
+    "pinData": {},
+    "connections": {
+      "When chat message received": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Window Buffer Memory": {
+        "ai_memory": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_memory",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "GoogleSearch": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Calculator": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Email": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Contacts": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Calendar": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Embeddings OpenAI": {
+        "ai_embedding": [
+          [
+            {
+              "node": "KnowledgeBase",
+              "type": "ai_embedding",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "KnowledgeBase": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Writer": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": false,
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "projectType": "n8n multi-agent automation portfolio"
+    },
+    "id": "direct-supervisor-supervisor-ceo",
+    "tags": [],
+    "isArchived": false
+  },
+  {
+    "name": "SAINT SAUVEUR PROJECT #1 - AVA Commercial Email Worker",
+    "nodes": [
+      {
+        "id": "direct-supervisor-email-agent-source-note",
+        "name": "Project Notes",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -760,
+          -360
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 320,
+          "content": "# Project by Saint Sauveur N'Guessan\n\nProfessional n8n multi-agent project built with AVA CEO orchestration and specialized worker agents.\n\nProject areas: AI agents, n8n workflows, Make.com automation, Python, AWS, WhatsApp Business API, PostgreSQL and business process automation.\n\nSafety: workflows are inactive by default. Configure credentials and require human approval before any email, WhatsApp, calendar, Slack or CRM write action."
+        }
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -260,
+          0
+        ],
+        "id": "d31da9bf-eef9-4c33-bd51-fcc014114771",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.query }}",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
+        "position": [
+          220,
+          0
+        ],
+        "id": "769723a2-3f91-4e73-bec1-c01e8584d1d1",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "mode": "list",
+            "value": "gpt-4o-mini"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          60,
+          300
+        ],
+        "id": "cb9d501d-2314-4319-9d27-df27278f71b4",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "nrDrI8MUFREwh9aM",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          460,
+          280
+        ],
+        "id": "0a083353-5ada-405e-9b7e-18b502e94341",
+        "name": "Get",
+        "webhookId": "23cab367-2fde-469c-90c0-7422b3e3029a",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "YFxurHpjWaABxhWI",
+            "name": "Gmail account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+          "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+          "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+          "options": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          220,
+          280
+        ],
+        "id": "8784ca2c-ffee-4733-bce0-cbf229fa0712",
+        "name": "Send",
+        "webhookId": "226ae793-e628-45cc-82e8-ac231523372d",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "YFxurHpjWaABxhWI",
+            "name": "Gmail account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "getAll",
+          "limit": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Limit', ``, 'number') }}",
+          "simple": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Simplify', ``, 'boolean') }}",
+          "filters": {
+            "readStatus": "unread"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          340,
+          280
+        ],
+        "id": "74170ca5-208b-488f-a42f-90ade5fb2a45",
+        "name": "Search",
+        "webhookId": "3cee156b-6a90-42a8-a594-cfa521b967c5",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "YFxurHpjWaABxhWI",
+            "name": "Gmail account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "reply",
+          "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}",
+          "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          580,
+          280
+        ],
+        "id": "b0afe050-2512-468a-b83b-fba815349885",
+        "name": "Reply",
+        "webhookId": "f967c0e5-c3c5-4934-8d65-3b6e6da10444",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "YFxurHpjWaABxhWI",
+            "name": "Gmail account"
+          }
+        }
+      }
+    ],
+    "pinData": {},
+    "connections": {
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Search": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Reply": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": false,
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "projectType": "n8n multi-agent automation portfolio"
+    },
+    "id": "direct-supervisor-email-agent",
+    "tags": [],
+    "isArchived": false
+  },
+  {
+    "name": "SAINT SAUVEUR PROJECT #1 - AVA Calendar Booking Worker",
+    "nodes": [
+      {
+        "id": "direct-supervisor-calendar-agent-source-note",
+        "name": "Project Notes",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -760,
+          -360
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 320,
+          "content": "# Project by Saint Sauveur N'Guessan\n\nProfessional n8n multi-agent project built with AVA CEO orchestration and specialized worker agents.\n\nProject areas: AI agents, n8n workflows, Make.com automation, Python, AWS, WhatsApp Business API, PostgreSQL and business process automation.\n\nSafety: workflows are inactive by default. Configure credentials and require human approval before any email, WhatsApp, calendar, Slack or CRM write action."
+        }
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -380,
+          40
+        ],
+        "id": "95eb8173-1126-4b9a-9d20-84b222af319b",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.query }}",
+          "options": {
+            "systemMessage": "You are AVA Calendar Booking Worker.\nHelp schedule discovery calls only after the lead is qualified.\nDo not create, update or delete calendar events without explicit approval.\nReturn suggested time slots and required questions."
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
+        "position": [
+          -160,
+          40
+        ],
+        "id": "4d30beec-fc07-43d2-8210-023364d12654",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "mode": "list",
+            "value": "gpt-4o-mini"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          -280,
+          320
+        ],
+        "id": "02bd41c0-4afd-4763-bce3-27e70e96386d",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "nrDrI8MUFREwh9aM",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "calendar": {
+            "__rl": true,
+            "value": "leonvanzyldev@gmail.com",
+            "mode": "list",
+            "cachedResultName": "leonvanzyldev@gmail.com"
+          },
+          "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+          "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+          "additionalFields": {
+            "summary": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Summary', ``, 'string') }}"
+          }
+        },
+        "type": "n8n-nodes-base.googleCalendarTool",
+        "typeVersion": 1.3,
+        "position": [
+          -40,
+          320
+        ],
+        "id": "ab235f3c-65d4-4a6d-a792-d06948025a31",
+        "name": "Create Event",
+        "credentials": {
+          "googleCalendarOAuth2Api": {
+            "id": "mUGDvBWFm3l5TPgU",
+            "name": "Google Calendar account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "getAll",
+          "calendar": {
+            "__rl": true,
+            "value": "leonvanzyldev@gmail.com",
+            "mode": "list",
+            "cachedResultName": "leonvanzyldev@gmail.com"
+          },
+          "limit": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Limit', ``, 'number') }}",
+          "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('After', ``, 'string') }}",
+          "timeAVA": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Before', ``, 'string') }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleCalendarTool",
+        "typeVersion": 1.3,
+        "position": [
+          80,
+          320
+        ],
+        "id": "ac2af861-b8f4-4350-a8ee-8ab38f41c389",
+        "name": "Get Events",
+        "credentials": {
+          "googleCalendarOAuth2Api": {
+            "id": "mUGDvBWFm3l5TPgU",
+            "name": "Google Calendar account"
+          }
+        }
+      }
+    ],
+    "pinData": {},
+    "connections": {
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create Event": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get Events": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": false,
+    "settings": {
+      "executionOrder": "v1",
+      "timezone": "Africa/Johannesburg",
+      "callerPolicy": "workflowsFromSameOwner"
+    },
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "projectType": "n8n multi-agent automation portfolio"
+    },
+    "id": "direct-supervisor-calendar-agent",
+    "tags": [],
+    "isArchived": false
+  },
+  {
+    "name": "SAINT SAUVEUR PROJECT #1 - AVA CRM Contact Worker",
+    "nodes": [
+      {
+        "id": "direct-supervisor-contact-agent-source-note",
+        "name": "Project Notes",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -760,
+          -360
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 320,
+          "content": "# Project by Saint Sauveur N'Guessan\n\nProfessional n8n multi-agent project built with AVA CEO orchestration and specialized worker agents.\n\nProject areas: AI agents, n8n workflows, Make.com automation, Python, AWS, WhatsApp Business API, PostgreSQL and business process automation.\n\nSafety: workflows are inactive by default. Configure credentials and require human approval before any email, WhatsApp, calendar, Slack or CRM write action."
+        }
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -280,
+          -20
+        ],
+        "id": "463d989c-b683-4f72-9229-21d0aa21224e",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.query }}",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
+        "position": [
+          -60,
+          -20
+        ],
+        "id": "6098ab8e-aee6-4689-9055-a29f0dd85fef",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "mode": "list",
+            "value": "gpt-4o-mini"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          -280,
+          260
+        ],
+        "id": "73df74f7-78b5-4528-ad8e-2ff002463050",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "nrDrI8MUFREwh9aM",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "getAll",
+          "limit": 5,
+          "fields": [
+            "*"
+          ],
+          "useQuery": true,
+          "query": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Query', ``, 'string') }}"
+        },
+        "type": "n8n-nodes-base.googleContactsTool",
+        "typeVersion": 1,
+        "position": [
+          -60,
+          260
+        ],
+        "id": "e9d462ab-f63a-4da9-9241-cec958993b4e",
+        "name": "Get Contacts",
+        "credentials": {
+          "googleContactsOAuth2Api": {
+            "id": "jCRXvy8Qi3VzhrVf",
+            "name": "Google Contacts account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "familyName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Family_Name', ``, 'string') }}",
+          "givenName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Given_Name', ``, 'string') }}",
+          "additionalFields": {
+            "emailsUi": {
+              "emailsValues": [
+                {
+                  "type": "home",
+                  "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', ``, 'string') }}"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.googleContactsTool",
+        "typeVersion": 1,
+        "position": [
+          80,
+          260
+        ],
+        "id": "03c0d94f-8ba0-4140-ac14-befd0ba7809c",
+        "name": "Create Contact",
+        "credentials": {
+          "googleContactsOAuth2Api": {
+            "id": "jCRXvy8Qi3VzhrVf",
+            "name": "Google Contacts account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "contactId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Contact_ID', ``, 'string') }}",
+          "fields": [
+            "names",
+            "emailAddresses"
+          ],
+          "updateFields": {
+            "emailsUi": {
+              "emailsValues": [
+                {
+                  "type": "home",
+                  "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', ``, 'string') }}"
+                }
+              ]
+            }
+          }
+        },
+        "type": "n8n-nodes-base.googleContactsTool",
+        "typeVersion": 1,
+        "position": [
+          220,
+          260
+        ],
+        "id": "abb50935-0b83-42fe-9674-d1f56ba04f76",
+        "name": "Update contacts",
+        "credentials": {
+          "googleContactsOAuth2Api": {
+            "id": "jCRXvy8Qi3VzhrVf",
+            "name": "Google Contacts account"
+          }
+        }
+      }
+    ],
+    "pinData": {},
+    "connections": {
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get Contacts": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create Contact": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Update contacts": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": false,
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "projectType": "n8n multi-agent automation portfolio"
+    },
+    "id": "direct-supervisor-contact-agent",
+    "tags": [],
+    "isArchived": false
+  },
+  {
+    "name": "SAINT SAUVEUR PROJECT #1 - AVA Content Creator Worker",
+    "nodes": [
+      {
+        "id": "direct-supervisor-content-creator-source-note",
+        "name": "Project Notes",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -760,
+          -360
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 320,
+          "content": "# Project by Saint Sauveur N'Guessan\n\nProfessional n8n multi-agent project built with AVA CEO orchestration and specialized worker agents.\n\nProject areas: AI agents, n8n workflows, Make.com automation, Python, AWS, WhatsApp Business API, PostgreSQL and business process automation.\n\nSafety: workflows are inactive by default. Configure credentials and require human approval before any email, WhatsApp, calendar, Slack or CRM write action."
+        }
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -460,
+          0
+        ],
+        "id": "f4d231a6-407f-4611-8edf-2685c61f4ba6",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.query }}",
+          "options": {
+            "systemMessage": "You are AVA Content Creator Worker.\nCreate portfolio content, Upwork case studies, proposal snippets and short social posts.\nTone: specialist, direct, proof-first, no fluff. Mention Make.com certification and production metrics when relevant."
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
+        "position": [
+          -240,
+          0
+        ],
+        "id": "3fc4ba7c-b798-465c-a374-90e63e8c9eb3",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "mode": "list",
+            "value": "gpt-4o-mini"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          -260,
+          180
+        ],
+        "id": "559c88c9-37c3-4119-9ad7-47cb21d9659d",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "nrDrI8MUFREwh9aM",
+            "name": "OpenAi account"
+          }
+        }
+      }
+    ],
+    "pinData": {},
+    "connections": {
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": false,
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "projectType": "n8n multi-agent automation portfolio"
+    },
+    "id": "direct-supervisor-content-creator",
+    "tags": [],
+    "isArchived": false
+  },
+  {
+    "name": "SAINT SAUVEUR PROJECT #1 - AVA Knowledge Base Updater",
+    "nodes": [
+      {
+        "id": "direct-supervisor-knowledge-base-source-note",
+        "name": "Project Notes",
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -760,
+          -360
+        ],
+        "parameters": {
+          "width": 560,
+          "height": 320,
+          "content": "# Project by Saint Sauveur N'Guessan\n\nProfessional n8n multi-agent project built with AVA CEO orchestration and specialized worker agents.\n\nProject areas: AI agents, n8n workflows, Make.com automation, Python, AWS, WhatsApp Business API, PostgreSQL and business process automation.\n\nSafety: workflows are inactive by default. Configure credentials and require human approval before any email, WhatsApp, calendar, Slack or CRM write action."
+        }
+      },
+      {
+        "parameters": {
+          "formTitle": "Load files into KB",
+          "formFields": {
+            "values": [
+              {
+                "fieldLabel": "File",
+                "fieldType": "file"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.formTrigger",
+        "typeVersion": 2.2,
+        "position": [
+          -240,
+          0
+        ],
+        "id": "08211076-a35c-4cc4-9416-9465b5756b04",
+        "name": "On form submission",
+        "webhookId": "4f79336d-0264-49af-975b-6871c7a301b5"
+      },
+      {
+        "parameters": {
+          "mode": "insert",
+          "pineconeIndex": {
+            "__rl": true,
+            "value": "n8n-tutorial",
+            "mode": "list",
+            "cachedResultName": "n8n-tutorial"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+        "typeVersion": 1,
+        "position": [
+          -20,
+          0
+        ],
+        "id": "2ea0a8d0-618b-4341-8bf3-477aeccec0ec",
+        "name": "Pinecone Vector Store",
+        "credentials": {
+          "pineconeApi": {
+            "id": "k4NoMJeIorHc6pt4",
+            "name": "PineconeApi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          -100,
+          200
+        ],
+        "id": "d651ef90-c1e3-43ea-832a-d7c0c07c7742",
+        "name": "Embeddings OpenAI",
+        "credentials": {
+          "openAiApi": {
+            "id": "nrDrI8MUFREwh9aM",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "dataType": "binary",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+        "typeVersion": 1,
+        "position": [
+          120,
+          200
+        ],
+        "id": "7142bf60-c24f-4f85-816a-1f016fccd229",
+        "name": "Default Data Loader"
+      },
+      {
+        "parameters": {
+          "chunkSize": 2000,
+          "chunkOverlap": 200,
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+        "typeVersion": 1,
+        "position": [
+          120,
+          340
+        ],
+        "id": "9fc7cc8d-912d-4cf3-ba23-3e5f4d48f9ec",
+        "name": "Recursive Character Text Splitter"
+      }
+    ],
+    "pinData": {},
+    "connections": {
+      "On form submission": {
+        "main": [
+          [
+            {
+              "node": "Pinecone Vector Store",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Embeddings OpenAI": {
+        "ai_embedding": [
+          [
+            {
+              "node": "Pinecone Vector Store",
+              "type": "ai_embedding",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Default Data Loader": {
+        "ai_document": [
+          [
+            {
+              "node": "Pinecone Vector Store",
+              "type": "ai_document",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Recursive Character Text Splitter": {
+        "ai_textSplitter": [
+          [
+            {
+              "node": "Default Data Loader",
+              "type": "ai_textSplitter",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": false,
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "meta": {
+      "builtBy": "Saint Sauveur N'Guessan",
+      "projectType": "n8n multi-agent automation portfolio"
+    },
+    "id": "direct-supervisor-knowledge-base",
+    "tags": [],
+    "isArchived": false
+  }
+]

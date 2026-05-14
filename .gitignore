@@ -1,0 +1,5 @@
+references/
+raw-templates/
+dist/
+__pycache__/
+*.log
