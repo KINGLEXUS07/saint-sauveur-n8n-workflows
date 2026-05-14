@@ -16,5 +16,3 @@ Total workflows: 10
 - SAINTOS V4 - 10 MONITORING AND ERROR HANDLER - 8 nodes - active=True
 
 Manual test guarantee: the demo path uses no external credentials and all manager/support workflows are active for internal Execute Workflow calls.
-
-Server test result: PASS 10/10 on n8n CLI manual execution.

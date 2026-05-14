@@ -303,146 +303,201 @@
       {
         "id": "production-ceo-agent",
         "name": "Production SaintOS CEO AI Agent",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
         "position": [
           760,
           80
         ],
         "parameters": {
-          "width": 360,
-          "height": 180,
-          "color": 5,
-          "content": "## Production SaintOS CEO AI Agent\n\nn8n AI Agent slot.\n\nProduction path: connect LLM credentials, then use this AI Agent to choose managers dynamically. Manual demo path is tested without keys."
-        }
+          "options": {
+            "systemMessage": "Production path: connect LLM credentials, then use this AI Agent to choose managers dynamically. Manual demo path is tested without keys."
+          }
+        },
+        "disabled": true
       },
       {
         "id": "ceo-model",
         "name": "CEO Chat Model",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
         "position": [
           620,
           20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 4,
-          "content": "## CEO Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
-        }
+          "model": "gpt-4o-mini",
+          "options": {
+            "temperature": 0.2
+          }
+        },
+        "disabled": true
       },
       {
         "id": "ceo-memory",
         "name": "CEO Window Memory",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+        "typeVersion": 1.3,
         "position": [
           920,
           20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 6,
-          "content": "## CEO Window Memory\n\nProduction session key: `={{$json.contact_id || 'saintos-v4-demo'}}`."
-        }
+          "sessionIdType": "customKey",
+          "sessionKey": "={{$json.contact_id || 'saintos-v4-demo'}}",
+          "contextWindowLength": 20
+        },
+        "disabled": true
       },
       {
         "id": "tool-communication",
         "name": "Communication Manager",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2,
         "position": [
           980,
           560
         ],
         "parameters": {
-          "width": 300,
-          "height": 170,
-          "color": 7,
-          "content": "## Communication Manager\n\nTool workflow target: `saintos-v4-communication-manager`.\n\nRoutes Gmail, WhatsApp, Telegram and voice drafts."
-        }
+          "name": "communication_manager",
+          "description": "Routes Gmail, WhatsApp, Telegram and voice drafts.",
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-communication-manager",
+            "mode": "id",
+            "cachedResultName": "Communication Manager"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {}
+          }
+        },
+        "disabled": true
       },
       {
         "id": "tool-client-success",
         "name": "Client Success Manager",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2,
         "position": [
           1160,
           560
         ],
         "parameters": {
-          "width": 300,
-          "height": 170,
-          "color": 7,
-          "content": "## Client Success Manager\n\nTool workflow target: `saintos-v4-client-success-manager`.\n\nQualifies leads, drafts proposals, handles objections and prepares follow-ups."
-        }
+          "name": "client_success_manager",
+          "description": "Qualifies leads, drafts proposals, handles objections and prepares follow-ups.",
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-client-success-manager",
+            "mode": "id",
+            "cachedResultName": "Client Success Manager"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {}
+          }
+        },
+        "disabled": true
       },
       {
         "id": "tool-research",
         "name": "Research Manager",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2,
         "position": [
           1340,
           560
         ],
         "parameters": {
-          "width": 300,
-          "height": 170,
-          "color": 7,
-          "content": "## Research Manager\n\nTool workflow target: `saintos-v4-research-manager`.\n\nRuns web research, enrichment, competitor analysis and report writing."
-        }
+          "name": "research_manager",
+          "description": "Runs web research, enrichment, competitor analysis and report writing.",
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-research-manager",
+            "mode": "id",
+            "cachedResultName": "Research Manager"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {}
+          }
+        },
+        "disabled": true
       },
       {
         "id": "tool-operations",
         "name": "Operations Manager",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2,
         "position": [
           980,
           710
         ],
         "parameters": {
-          "width": 300,
-          "height": 170,
-          "color": 7,
-          "content": "## Operations Manager\n\nTool workflow target: `saintos-v4-operations-manager`.\n\nUpdates Sheets, Notion, Calendar, PostgreSQL and task trackers."
-        }
+          "name": "operations_manager",
+          "description": "Updates Sheets, Notion, Calendar, PostgreSQL and task trackers.",
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-operations-manager",
+            "mode": "id",
+            "cachedResultName": "Operations Manager"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {}
+          }
+        },
+        "disabled": true
       },
       {
         "id": "tool-content",
         "name": "Content Manager",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2,
         "position": [
           1160,
           710
         ],
         "parameters": {
-          "width": 300,
-          "height": 170,
-          "color": 7,
-          "content": "## Content Manager\n\nTool workflow target: `saintos-v4-content-manager`.\n\nCreates LinkedIn posts, articles, case studies, video scripts and Upwork copy."
-        }
+          "name": "content_manager",
+          "description": "Creates LinkedIn posts, articles, case studies, video scripts and Upwork copy.",
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-content-manager",
+            "mode": "id",
+            "cachedResultName": "Content Manager"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {}
+          }
+        },
+        "disabled": true
       },
       {
         "id": "tool-voice",
         "name": "Voice Manager",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+        "typeVersion": 2,
         "position": [
           1340,
           710
         ],
         "parameters": {
-          "width": 300,
-          "height": 170,
-          "color": 7,
-          "content": "## Voice Manager\n\nTool workflow target: `saintos-v4-voice-manager`.\n\nHandles call transcripts, spoken replies, call summaries and voice follow-ups."
-        }
+          "name": "voice_manager",
+          "description": "Handles call transcripts, spoken replies, call summaries and voice follow-ups.",
+          "workflowId": {
+            "__rl": true,
+            "value": "saintos-v4-voice-manager",
+            "mode": "id",
+            "cachedResultName": "Voice Manager"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {}
+          }
+        },
+        "disabled": true
       },
       {
         "id": "risk",
@@ -1163,50 +1218,51 @@
       {
         "id": "production-manager-agent",
         "name": "Production Communication Manager AI Agent",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
         "position": [
           -80,
           -190
         ],
         "parameters": {
-          "width": 360,
-          "height": 180,
-          "color": 5,
-          "content": "## Production Communication Manager AI Agent\n\nn8n AI Agent slot.\n\nProduction path for Communication Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
-        }
+          "options": {
+            "systemMessage": "Production path for Communication Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
+          }
+        },
+        "disabled": true
       },
       {
         "id": "model",
         "name": "Manager Chat Model",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
         "position": [
           -240,
           -20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 4,
-          "content": "## Manager Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
-        }
+          "model": "gpt-4o-mini",
+          "options": {
+            "temperature": 0.2
+          }
+        },
+        "disabled": true
       },
       {
         "id": "memory",
         "name": "Manager Memory",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+        "typeVersion": 1.3,
         "position": [
           0,
           -20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 6,
-          "content": "## Manager Memory\n\nProduction session key: `={$json.contact_id || 'communication-demo'}`."
-        }
+          "sessionIdType": "customKey",
+          "sessionKey": "={$json.contact_id || 'communication-demo'}",
+          "contextWindowLength": 20
+        },
+        "disabled": true
       },
       {
         "id": "worker-0",
@@ -1450,50 +1506,51 @@
       {
         "id": "production-manager-agent",
         "name": "Production Client Success Manager AI Agent",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
         "position": [
           -80,
           -190
         ],
         "parameters": {
-          "width": 360,
-          "height": 180,
-          "color": 5,
-          "content": "## Production Client Success Manager AI Agent\n\nn8n AI Agent slot.\n\nProduction path for Client Success Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
-        }
+          "options": {
+            "systemMessage": "Production path for Client Success Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
+          }
+        },
+        "disabled": true
       },
       {
         "id": "model",
         "name": "Manager Chat Model",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
         "position": [
           -240,
           -20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 4,
-          "content": "## Manager Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
-        }
+          "model": "gpt-4o-mini",
+          "options": {
+            "temperature": 0.2
+          }
+        },
+        "disabled": true
       },
       {
         "id": "memory",
         "name": "Manager Memory",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+        "typeVersion": 1.3,
         "position": [
           0,
           -20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 6,
-          "content": "## Manager Memory\n\nProduction session key: `={$json.contact_id || 'client-success-demo'}`."
-        }
+          "sessionIdType": "customKey",
+          "sessionKey": "={$json.contact_id || 'client-success-demo'}",
+          "contextWindowLength": 20
+        },
+        "disabled": true
       },
       {
         "id": "worker-0",
@@ -1737,50 +1794,51 @@
       {
         "id": "production-manager-agent",
         "name": "Production Research Manager AI Agent",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
         "position": [
           -80,
           -190
         ],
         "parameters": {
-          "width": 360,
-          "height": 180,
-          "color": 5,
-          "content": "## Production Research Manager AI Agent\n\nn8n AI Agent slot.\n\nProduction path for Research Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
-        }
+          "options": {
+            "systemMessage": "Production path for Research Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
+          }
+        },
+        "disabled": true
       },
       {
         "id": "model",
         "name": "Manager Chat Model",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
         "position": [
           -240,
           -20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 4,
-          "content": "## Manager Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
-        }
+          "model": "gpt-4o-mini",
+          "options": {
+            "temperature": 0.2
+          }
+        },
+        "disabled": true
       },
       {
         "id": "memory",
         "name": "Manager Memory",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+        "typeVersion": 1.3,
         "position": [
           0,
           -20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 6,
-          "content": "## Manager Memory\n\nProduction session key: `={$json.contact_id || 'research-demo'}`."
-        }
+          "sessionIdType": "customKey",
+          "sessionKey": "={$json.contact_id || 'research-demo'}",
+          "contextWindowLength": 20
+        },
+        "disabled": true
       },
       {
         "id": "worker-0",
@@ -2024,50 +2082,51 @@
       {
         "id": "production-manager-agent",
         "name": "Production Operations Manager AI Agent",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
         "position": [
           -80,
           -190
         ],
         "parameters": {
-          "width": 360,
-          "height": 180,
-          "color": 5,
-          "content": "## Production Operations Manager AI Agent\n\nn8n AI Agent slot.\n\nProduction path for Operations Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
-        }
+          "options": {
+            "systemMessage": "Production path for Operations Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
+          }
+        },
+        "disabled": true
       },
       {
         "id": "model",
         "name": "Manager Chat Model",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
         "position": [
           -240,
           -20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 4,
-          "content": "## Manager Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
-        }
+          "model": "gpt-4o-mini",
+          "options": {
+            "temperature": 0.2
+          }
+        },
+        "disabled": true
       },
       {
         "id": "memory",
         "name": "Manager Memory",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+        "typeVersion": 1.3,
         "position": [
           0,
           -20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 6,
-          "content": "## Manager Memory\n\nProduction session key: `={$json.contact_id || 'operations-demo'}`."
-        }
+          "sessionIdType": "customKey",
+          "sessionKey": "={$json.contact_id || 'operations-demo'}",
+          "contextWindowLength": 20
+        },
+        "disabled": true
       },
       {
         "id": "worker-0",
@@ -2311,50 +2370,51 @@
       {
         "id": "production-manager-agent",
         "name": "Production Content Manager AI Agent",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
         "position": [
           -80,
           -190
         ],
         "parameters": {
-          "width": 360,
-          "height": 180,
-          "color": 5,
-          "content": "## Production Content Manager AI Agent\n\nn8n AI Agent slot.\n\nProduction path for Content Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
-        }
+          "options": {
+            "systemMessage": "Production path for Content Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
+          }
+        },
+        "disabled": true
       },
       {
         "id": "model",
         "name": "Manager Chat Model",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
         "position": [
           -240,
           -20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 4,
-          "content": "## Manager Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
-        }
+          "model": "gpt-4o-mini",
+          "options": {
+            "temperature": 0.2
+          }
+        },
+        "disabled": true
       },
       {
         "id": "memory",
         "name": "Manager Memory",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+        "typeVersion": 1.3,
         "position": [
           0,
           -20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 6,
-          "content": "## Manager Memory\n\nProduction session key: `={$json.contact_id || 'content-demo'}`."
-        }
+          "sessionIdType": "customKey",
+          "sessionKey": "={$json.contact_id || 'content-demo'}",
+          "contextWindowLength": 20
+        },
+        "disabled": true
       },
       {
         "id": "worker-0",
@@ -2598,50 +2658,51 @@
       {
         "id": "production-manager-agent",
         "name": "Production Voice Manager AI Agent",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
         "position": [
           -80,
           -190
         ],
         "parameters": {
-          "width": 360,
-          "height": 180,
-          "color": 5,
-          "content": "## Production Voice Manager AI Agent\n\nn8n AI Agent slot.\n\nProduction path for Voice Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
-        }
+          "options": {
+            "systemMessage": "Production path for Voice Manager. Connect LLM credentials to use this agent. Manual tests bypass it."
+          }
+        },
+        "disabled": true
       },
       {
         "id": "model",
         "name": "Manager Chat Model",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
         "position": [
           -240,
           -20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 4,
-          "content": "## Manager Chat Model\n\nConnect OpenAI, Claude or Bedrock credentials here for production."
-        }
+          "model": "gpt-4o-mini",
+          "options": {
+            "temperature": 0.2
+          }
+        },
+        "disabled": true
       },
       {
         "id": "memory",
         "name": "Manager Memory",
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
+        "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+        "typeVersion": 1.3,
         "position": [
           0,
           -20
         ],
         "parameters": {
-          "width": 300,
-          "height": 150,
-          "color": 6,
-          "content": "## Manager Memory\n\nProduction session key: `={$json.contact_id || 'voice-demo'}`."
-        }
+          "sessionIdType": "customKey",
+          "sessionKey": "={$json.contact_id || 'voice-demo'}",
+          "contextWindowLength": 20
+        },
+        "disabled": true
       },
       {
         "id": "worker-0",
